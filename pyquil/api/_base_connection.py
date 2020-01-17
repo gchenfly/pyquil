@@ -302,7 +302,7 @@ class ForestSession(requests.Session):
     def __init__(self, *, config: PyquilConfig, lattice_name: Optional[str] = None, **kwargs):
         super().__init__(**kwargs)
         self.config = config
-        self.config.get_engagement = self.get_engagement
+        # self.config.get_engagement = self.get_engagement
         self._engagement = None
         self.headers.update(self.config.qcs_auth_headers)
         self.headers["User-Agent"] = f"PyQuil/{__version__}"
