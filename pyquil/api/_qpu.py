@@ -204,6 +204,9 @@ support at support@rigetti.com."""
             )
         super().run()
 
+        # NOTE: hack to enable engagement on run requests
+        self.session.config.get_engagement = self.session.get_engagement
+
         request = QPURequest(
             program=self._executable.program,
             patch_values=self._build_patch_values(),
@@ -232,6 +235,10 @@ support at support@rigetti.com."""
         self._memory_results = defaultdict(lambda: None)
         self._memory_results["ro"] = bitstrings
         self._last_results = results
+
+        # NOTE: hack, disable engagement again
+        self.session.config.get_engagement = None
+        self.session._engagement = None
 
         return self
 

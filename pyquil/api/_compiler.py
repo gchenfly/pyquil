@@ -482,6 +482,4 @@ class HTTPCompilerClient:
 
             raise UserMessageError(message) from e
 
-        print(response.status_code)
-        print(response.text)
         return from_json(response.text)
